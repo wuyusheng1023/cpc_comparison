@@ -24,6 +24,14 @@ services:
     depends_on:
       - db
 
+  worker:
+    build: ./worker
+    command: python worker.py
+    env_file:
+      - ./.env.prod
+    depends_on:
+      - db    
+
   db:
     image: postgres:14.0-alpine
     volumes:

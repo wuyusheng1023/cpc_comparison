@@ -1,6 +1,7 @@
+import os
 from datetime import datetime, timedelta
-import requests
 
+import requests
 
 import sqlalchemy
 from sqlalchemy import create_engine
@@ -13,11 +14,11 @@ from models import Base
 
 def get_postgres_engine():
 
-	username = 'mini_cpc'
-	password = 'mini_cpc'
-	host = 'localhost'
-	port = 5432
-	database = 'mini_cpc'
+	username = os.environ.get("SQL_USER", "user")
+	password = os.environ.get("SQL_PASSWORD", "password")
+	host = os.environ.get("SQL_HOST", "localhost")
+	port = os.environ.get("SQL_PORT", 5432)
+	database = os.environ.get("SQL_DATABASE", "password")
 	DATABASE_URI = f'postgresql://{username}:{password}@{host}:{port}/{database}'
 	engine = create_engine(DATABASE_URI)
 	return engine
@@ -34,10 +35,10 @@ def init_postgress(engine):
 
 def get_mongo_col():
 
-	host = 'atm-dev.site'
-	port = 11015
-	database = 'mini_CPC'
-	collection = 'data'
+	host = os.environ.get("MONGO_HOST", "host")
+	port = int(os.environ.get("MONGO_PORT", 80))
+	database = os.environ.get("MONGO_DATABASE", "password")
+	collection = os.environ.get("MONGO_COL", "collection")
 	client = MongoClient(host=host, port=port)
 	db = client[database]
 	col = db[collection]
