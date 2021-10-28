@@ -1,0 +1,6 @@
+venv/
+playground/
+
+*.pyc
+*.sqlite3
+.env.dev
