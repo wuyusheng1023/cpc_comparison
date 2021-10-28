@@ -3,4 +3,4 @@ playground/
 
 *.pyc
 *.sqlite3
-.env.dev
+.env.*
