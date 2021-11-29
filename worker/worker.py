@@ -35,4 +35,4 @@ if __name__ == '__main__':
 				if i % 10 == 0:
 					print(f'fetch raw data again in {60-i} sec')
 		except:
-			pass
+			sleep(300)
