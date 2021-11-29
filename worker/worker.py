@@ -19,17 +19,20 @@ dttm_raw_tsi = read_last_time(engine, RawTsi)
 
 if __name__ == '__main__':
 	while True:
-		data = fetch_raw_mini(dttm_raw_mini)
-		insert_data(engine, RawMini, data)
-		dttm_raw_mini = read_last_time(engine, RawMini)
-		print(f"Raw mini data update to {dttm_raw_mini}")
+		try:
+			data = fetch_raw_mini(dttm_raw_mini)
+			insert_data(engine, RawMini, data)
+			dttm_raw_mini = read_last_time(engine, RawMini)
+			print(f"Raw mini data update to {dttm_raw_mini}")
 
-		data = fetch_raw_tsi(dttm_raw_tsi)
-		insert_data(engine, RawTsi, data)
-		dttm_raw_tsi = read_last_time(engine, RawTsi)
-		print(f"Raw TSI data update to {dttm_raw_tsi}")
+			data = fetch_raw_tsi(dttm_raw_tsi)
+			insert_data(engine, RawTsi, data)
+			dttm_raw_tsi = read_last_time(engine, RawTsi)
+			print(f"Raw TSI data update to {dttm_raw_tsi}")
 
-		for i in range(60):
-			sleep(1)
-			if i % 10 == 0:
-				print(f'fetch raw data again in {60-i} sec')
+			for i in range(60):
+				sleep(1)
+				if i % 10 == 0:
+					print(f'fetch raw data again in {60-i} sec')
+		except:
+			pass
